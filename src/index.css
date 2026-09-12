@@ -4,7 +4,7 @@
   --bg-secondary: #171717;
   --text-primary: #ededed;
   --text-secondary: #a1a1a1;
-  --text-tertiary: #808080;
+  --text-tertiary: #858585;
 
   --accent: #ffffff;
   --accent-2: #67e8f9;
@@ -468,13 +468,44 @@ section[id] {
     align-items: flex-start;
   }
 
-  .hero-portrait {
-    width: 140px;
-    height: 140px;
+  .hero-portrait-wrap {
+    display: none;
   }
 
   .hero-title {
     font-size: var(--text-2xl);
+  }
+
+  .hero-role {
+    white-space: normal;
+  }
+
+  .section-heading-row {
+    flex-wrap: wrap;
+    row-gap: var(--space-1);
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--space-4);
+  }
+
+  .section {
+    padding: var(--space-12) 0;
+  }
+
+  .hero-title {
+    font-size: var(--text-xl);
+    letter-spacing: -0.01em;
+  }
+
+  .hero-subtitle {
+    font-size: var(--text-base);
+  }
+
+  .project-card {
+    padding: var(--space-4);
   }
 }
 
