@@ -56,15 +56,16 @@ const Projects = () => {
             </div>
 
             <div className="project-links">
-              <a
-                href={project.demo}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="link-hover"
-                style={{ display: project.demo ? 'inline-flex' : 'none' }}
-              >
-                <ExternalLink size={14} /> Live Demo
-              </a>
+              {project.demo && (
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link-hover"
+                >
+                  <ExternalLink size={14} /> Live Demo
+                </a>
+              )}
               <a
                 href={project.repo}
                 target="_blank"
