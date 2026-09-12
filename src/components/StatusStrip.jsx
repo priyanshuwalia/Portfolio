@@ -3,7 +3,7 @@ import React from 'react';
 const cells = [
   {
     label: 'Focus',
-    value: 'AI-agent commerce & DeFi tooling',
+    value: 'AI-agent systems & full-stack products',
   },
   {
     label: 'Learning',
@@ -11,7 +11,7 @@ const cells = [
   },
   {
     label: 'Seeking',
-    value: 'Full-Stack & Web3 roles',
+    value: 'Full-Stack & AI-engineering roles',
   },
 ];
 

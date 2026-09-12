@@ -20,8 +20,3 @@ export const education = {
   status: '3rd year · in progress',
   focus: 'Full-stack development, data structures & algorithms, systems programming',
 };
-
-export const githubStats = {
-  publicRepos: 39,
-  achievements: ['Pull Shark', 'YOLO'],
-};

@@ -7,13 +7,6 @@ export const nowBuilding = [
     demo: 'https://merchantgate.vercel.app/',
     repo: 'https://github.com/priyanshuwalia/merchantgate',
   },
-  {
-    title: 'Payment escrow & DeFi analytics',
-    status: 'in-progress',
-    note: 'Escrow systems and real-time TVL, volume and risk dashboards — the roadmap I keep in my repo README.',
-    meta: 'Rust · Protocol design',
-    repo: 'https://github.com/priyanshuwalia',
-  },
 ];
 
 export const nowReading = [

@@ -21,7 +21,6 @@ const Hero = () => {
 
           <ul className="hero-facts">
             <li>New Delhi, India</li>
-            <li>3rd-year B.Tech IT · BPIT</li>
             <li>Building in public</li>
           </ul>
 

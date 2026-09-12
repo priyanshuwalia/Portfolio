@@ -32,7 +32,7 @@ export const featuredProjects = [
   },
   {
     title: 'EventX',
-    status: 'shipped',
+    status: 'built',
     tagline: 'Blockchain-powered event ticketing & reselling.',
     description:
       'Event ticketing platform on-chain — verifiable ownership and secure secondary-market reselling, so tickets can\u2019t be duplicated or silently scalped.',
@@ -51,27 +51,5 @@ export const labProjects = [
     title: 'Vocabtion',
     description: 'Anki-style vocabulary manager with built-in quizzes.',
     repo: 'https://github.com/priyanshuwalia/Vocabtion',
-  },
-  {
-    title: 'build-your-own-react',
-    description: 'Recreating React to see what actually happens under the hood.',
-    repo: 'https://github.com/priyanshuwalia/build-your-own-react',
-  },
-  {
-    title: 'Ingenious',
-    description: 'Full-stack Genius.com clone for code-themed songs.',
-    repo: 'https://github.com/priyanshuwalia/Ingenious',
-  },
-  {
-    title: 'MovieLand',
-    description: 'Debounced-search movie app on top of the OMDb API.',
-    repo: 'https://github.com/priyanshuwalia/MovieLand',
-    demo: 'https://movie-land-omega-lyart.vercel.app/',
-  },
-  {
-    title: 'Positivitus',
-    description: 'Responsive SaaS landing page, performance-optimized.',
-    repo: 'https://github.com/priyanshuwalia/Positivitus',
-    demo: 'https://positivitus-theta.vercel.app/',
   },
 ];

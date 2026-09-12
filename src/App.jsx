@@ -6,12 +6,10 @@ import Now from './components/Now';
 import Projects from './components/Projects';
 import TechStack from './components/TechStack';
 import Experience from './components/Experience';
-import FieldNotes from './components/FieldNotes';
 import About from './components/About';
 import Contact from './components/Contact';
 import GridBackground from './components/GridBackground';
 import Reveal from './components/Reveal';
-
 function App() {
   return (
     <>
@@ -52,12 +50,6 @@ function App() {
 
         <Reveal>
           <Experience />
-        </Reveal>
-
-        <hr className="divider" />
-
-        <Reveal>
-          <FieldNotes />
         </Reveal>
 
         <hr className="divider" />
