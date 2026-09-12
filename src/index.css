@@ -699,6 +699,12 @@ section[id] {
   margin-bottom: var(--space-4);
 }
 
+.project-image {
+  display: block;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
 .project-card-head {
   display: flex;
   align-items: center;

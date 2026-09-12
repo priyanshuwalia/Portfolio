@@ -8,6 +8,7 @@ export const featuredProjects = [
     tags: ['AI Agent Commerce', 'Razorpay', 'API Design', 'Dashboard'],
     demo: 'https://merchantgate.vercel.app/',
     repo: 'https://github.com/priyanshuwalia/merchantgate',
+    image: '/merchantGate.png',
   },
   {
     title: 'Formium',

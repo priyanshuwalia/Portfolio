@@ -28,6 +28,14 @@ const Projects = () => {
             {project.video && (
               <SmartVideo src={project.video} className="project-video" />
             )}
+            {project.image && (
+              <img
+                src={project.image}
+                alt={`${project.title} preview`}
+                className="project-video project-image"
+                loading="lazy"
+              />
+            )}
             <div className="project-card-head">
               <h3 className="project-title">{project.title}</h3>
               <span className={`status-chip ${project.status}`}>
