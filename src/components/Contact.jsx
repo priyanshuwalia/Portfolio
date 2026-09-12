@@ -1,41 +1,45 @@
 import React from 'react';
-import { Mail, Twitter, Linkedin, Github, Globe } from 'lucide-react';
+import { Mail, Linkedin, Github } from 'lucide-react';
+import { socials } from '../data/socials';
+import XLogo from './BrandIcons';
 
 const contactLinks = [
   {
     name: "Email",
-    value: "waliapriyanshu07@gmail.com",
-    href: "mailto:waliapriyanshu07@gmail.com",
+    value: socials.email.handle,
+    href: socials.email.url,
     icon: <Mail size={20} />,
   },
   {
     name: "LinkedIn",
-    value: "Priyanshu Walia", // Placeholder as CV link just says "Linkedin"
-    href: "https://linkedin.com/in/priyanshu-walia", // Assuming standard URL structure or placeholder
+    value: socials.linkedin.handle,
+    href: socials.linkedin.url,
     icon: <Linkedin size={20} />,
   },
   {
     name: "GitHub",
-    value: "priyanshuwalia",
-    href: "https://github.com/priyanshuwalia",
+    value: socials.github.handle,
+    href: socials.github.url,
     icon: <Github size={20} />,
+  },
+  {
+    name: "X",
+    value: socials.twitter.handle,
+    href: socials.twitter.url,
+    icon: <XLogo size={20} />,
   },
 ];
 
 const Contact = () => {
     return (
         <section id="contact" className="section" style={{ paddingBottom: 'var(--space-20)' }}>
-            <h2 style={{
-                fontSize: 'var(--text-sm)',
-                textTransform: 'uppercase',
-                letterSpacing: '0.05em',
-                color: 'var(--text-tertiary)',
-                marginBottom: 'var(--space-6)'
-            }}>
-                Contact
-            </h2>
+            <h2 className="section-heading">/ Get In Touch</h2>
+            <p className="section-intro" style={{ maxWidth: '560px' }}>
+                Looking for a full-stack engineer, or someone who'll tangle with
+                your Web3/payments infra? My inbox is open.
+            </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2" style={{ gap: 'var(--space-4)' }}>
+            <div className="contact-grid">
                 {contactLinks.map((link, index) => (
                     <a
                         key={index}
@@ -44,12 +48,12 @@ const Contact = () => {
                         rel={link.name !== 'Email' ? "noopener noreferrer" : undefined}
                         className="contact-card"
                     >
-                        <div style={{ color: 'var(--text-secondary)' }}>
+                        <div className="contact-icon">
                             {link.icon}
                         </div>
                         <div>
-                            <div style={{ fontSize: 'var(--text-sm)', color: 'var(--text-tertiary)' }}>{link.name}</div>
-                            <div style={{ fontSize: 'var(--text-base)', color: 'var(--text-primary)' }}>{link.value}</div>
+                            <div className="contact-label">{link.name}</div>
+                            <div className="contact-value">{link.value}</div>
                         </div>
                     </a>
                 ))}

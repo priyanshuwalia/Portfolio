@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 — Priyanshu Walia</title>
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: #0a0a0a;
+        color: #ededed;
+        font-family: 'Inter', system-ui, sans-serif;
+        text-align: center;
+      }
+      a {
+        color: #a1a1a1;
+      }
+      a:hover {
+        color: #ededed;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>/ 404</h1>
+      <p>This page took a wrong turn into the grid.</p>
+      <p><a href="/">← Back to home</a></p>
+    </div>
+    <script>
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 8000);
+    </script>
+  </body>
+</html>

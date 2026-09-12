@@ -8,39 +8,37 @@ const techCategories = [
     {
         name: "Languages",
         items: [
-            { name: "JavaScript", icon: <SiJavascript /> },
-            { name: "TypeScript", icon: <SiTypescript /> },
-            { name: "Python", icon: <SiPython /> }
+            { name: "JavaScript", icon: <SiJavascript />, depth: "core" },
+            { name: "TypeScript", icon: <SiTypescript />, depth: "core" },
+            { name: "Python", icon: <SiPython />, depth: "core" }
         ]
     },
     {
         name: "Frontend",
         items: [
-            { name: "React.js", icon: <SiReact /> },
-            { name: "Next.js", icon: <SiNextdotjs /> },
-            { name: "HTML5", icon: <span style={{ fontWeight: 'bold' }}>H5</span> }, /* Icon placeholder or use SiHtml5 if available */
-            { name: "CSS3", icon: <span style={{ fontWeight: 'bold' }}>CSS</span> }, /* Icon placeholder or use SiCss3 if available */
-            { name: "TailwindCSS", icon: <SiTailwindcss /> },
-            { name: "Framer Motion", icon: <SiFramer /> }
+            { name: "React.js", icon: <SiReact />, depth: "core" },
+            { name: "Next.js", icon: <SiNextdotjs />, depth: "core" },
+            { name: "TailwindCSS", icon: <SiTailwindcss />, depth: "core" },
+            { name: "Framer Motion", icon: <SiFramer />, depth: "exploring" }
         ]
     },
     {
         name: "Backend & DB",
         items: [
-            { name: "Node.js", icon: <SiNodedotjs /> },
-            { name: "Express.js", icon: <SiExpress /> },
-            { name: "MongoDB", icon: <SiMongodb /> },
-            { name: "MySQL", icon: <SiMysql /> },
-            { name: "PostgreSQL", icon: <SiPostgresql /> }
+            { name: "Node.js", icon: <SiNodedotjs />, depth: "core" },
+            { name: "Express.js", icon: <SiExpress />, depth: "core" },
+            { name: "MongoDB", icon: <SiMongodb />, depth: "core" },
+            { name: "MySQL", icon: <SiMysql />, depth: "exploring" },
+            { name: "PostgreSQL", icon: <SiPostgresql />, depth: "exploring" }
         ]
     },
     {
         name: "Tools & Platforms",
         items: [
-            { name: "Git", icon: <SiGit /> },
-            { name: "GitHub", icon: <SiGithub /> },
-            { name: "Docker", icon: <SiDocker /> },
-            { name: "Vercel", icon: <span style={{ fontWeight: 'bold' }}>▲</span> } /* SiVercel might be available but safe fallback */
+            { name: "Git", icon: <SiGit />, depth: "core" },
+            { name: "GitHub", icon: <SiGithub />, depth: "core" },
+            { name: "Docker", icon: <SiDocker />, depth: "exploring" },
+            { name: "Vercel", icon: <span style={{ fontWeight: 'bold' }}>▲</span>, depth: "core" }
         ]
     }
 ];
@@ -48,38 +46,19 @@ const techCategories = [
 const TechStack = () => {
     return (
         <section id="stack" className="section">
-            <h2 style={{
-                fontSize: 'var(--text-xl)',
-                textTransform: 'uppercase',
-                letterSpacing: '0.05em',
-                color: 'var(--text-primary)',
-                marginBottom: 'var(--space-6)'
-            }}>
-            / Tech Stack
-            </h2>
+            <h2 className="section-heading">/ Tech Stack</h2>
 
             <div className="grid grid-cols-1" style={{ gap: 'var(--space-8)' }}>
                 {techCategories.map((category) => (
                     <div key={category.name}>
-                        <h3 style={{
-                            fontSize: 'var(--text-base)',
-                            fontWeight: '500',
-                            color: 'var(--text-primary)',
-                            marginBottom: 'var(--space-4)'
-                        }}>
-                            {category.name}
-                        </h3>
-                        <div style={{
-                            display: 'grid',
-                            gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr))',
-                            gap: 'var(--space-3)'
-                        }}>
+                        <h3 className="subsection-heading">{category.name}</h3>
+                        <div className="tech-grid">
                             {category.items.map(item => (
                                 <div key={item.name} className="tech-card">
                                     <div className="tech-icon" style={{ fontSize: '1.5rem', marginBottom: 'var(--space-2)' }}>
                                         {item.icon}
                                     </div>
-                                    <span style={{ fontSize: '0.8rem' }}>{item.name}</span>
+                                    <span className="tech-name">{item.name}</span>
                                 </div>
                             ))}
                         </div>

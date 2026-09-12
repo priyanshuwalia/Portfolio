@@ -1,66 +1,54 @@
 import React from 'react';
-
-const experiences = [
-    {
-        role: 'Tech Team Member',
-        company: 'NAMESPACE Community',
-        period: 'Aug 2024 – Sep 2025',
-        description: [
-            'Supported technical operations for Web3-focused hackathons and developer events.',
-            'Assisted participants with debugging smart contracts, dApps, and frontend integrations.',
-            'Collaborated with cross-functional teams to ensure smooth execution of workshops and events.',
-            'Gained exposure to blockchain development workflows and developer tooling.'
-        ]
-    }
-];
+import { experiences, education } from '../data/experience';
 
 const Experience = () => {
-    return (
-        <section id="experience" className="section">
-            <h2 style={{
-                fontSize: 'var(--text-xl)',
-                textTransform: 'uppercase',
-                letterSpacing: '0.05em',
-                color: 'var(--text-primary)',
-                marginBottom: 'var(--space-6)'
-            }}>
-              / Experience
-            </h2>
+  return (
+    <section id="experience" className="section">
+      <h2 className="section-heading">/ Experience &amp; Education</h2>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-8)' }}>
-                {experiences.map((exp, index) => (
-                    <div key={index} className="experience-card">
-                        <header style={{ marginBottom: 'var(--space-2)' }}>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: 'var(--space-2)' }}>
-                                <h3 style={{ fontSize: 'var(--text-lg)', fontWeight: '500', color: 'var(--text-primary)' }}>
-                                    {exp.role}
-                                </h3>
-                                <span style={{ fontSize: 'var(--text-sm)', color: 'var(--text-tertiary)' }}>
-                                    {exp.period}
-                                </span>
-                            </div>
-                            <div style={{ fontSize: 'var(--text-base)', color: 'var(--text-secondary)' }}>
-                                {exp.company}
-                            </div>
-                        </header>
-                        <ul style={{
-                            listStyle: 'disc',
-                            paddingLeft: 'var(--space-4)',
-                            color: 'var(--text-secondary)',
-                            fontSize: 'var(--text-base)',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            gap: 'var(--space-1)'
-                        }}>
-                            {exp.description.map((item, i) => (
-                                <li key={i}>{item}</li>
-                            ))}
-                        </ul>
-                    </div>
-                ))}
+      <div className="timeline">
+        {experiences.map((exp, index) => (
+          <div key={index} className="timeline-item">
+            <div className="timeline-rail" aria-hidden="true">
+              <span className="timeline-dot" />
             </div>
-        </section>
-    );
+            <div className="timeline-body">
+              <div className="timeline-head">
+                <h3 className="timeline-role">{exp.role}</h3>
+                <span className="timeline-period">{exp.period}</span>
+              </div>
+              <div className="timeline-company">
+                {exp.company} <span className="timeline-type">· {exp.type}</span>
+              </div>
+              <ul className="timeline-bullets">
+                {exp.description.map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+
+        <div className="timeline-item">
+          <div className="timeline-rail" aria-hidden="true">
+            <span className="timeline-dot" />
+          </div>
+          <div className="timeline-body">
+            <div className="timeline-head">
+              <h3 className="timeline-role">{education.degree}</h3>
+              <span className="timeline-period">{education.period}</span>
+            </div>
+            <div className="timeline-company">
+              {education.school} <span className="timeline-type">· {education.status}</span>
+            </div>
+            <ul className="timeline-bullets">
+              <li>Focus: {education.focus}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Experience;

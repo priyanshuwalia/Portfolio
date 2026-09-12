@@ -1,61 +1,84 @@
 import React from 'react';
+import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import StatusStrip from './components/StatusStrip';
+import Now from './components/Now';
 import Projects from './components/Projects';
+import TechStack from './components/TechStack';
+import Experience from './components/Experience';
+import FieldNotes from './components/FieldNotes';
 import About from './components/About';
 import Contact from './components/Contact';
-import Experience from './components/Experience';
 import GridBackground from './components/GridBackground';
-import TechStack from './components/TechStack';
-
-import Navbar from './components/Navbar';
+import Reveal from './components/Reveal';
 
 function App() {
   return (
     <>
+      <a className="skip-link" href="#main">
+        Skip to content
+      </a>
       <Navbar />
-      <main className="container" style={{ paddingTop: '80px' }}>
+      <main className="container" id="main" style={{ paddingTop: '80px' }}>
         <GridBackground />
 
         <div id="hero">
           <Hero />
         </div>
-         <hr className="divider" />
-         <div id="projects">
-          <Projects />
-        </div>
-        <hr className="divider" />
 
-        <TechStack />
-
-       
-
-       
+        <StatusStrip />
 
         <hr className="divider" />
 
-        <div id="experience">
+        <Reveal>
+          <Now />
+        </Reveal>
+
+        <hr className="divider" />
+
+        <Reveal>
+          <div id="projects">
+            <Projects />
+          </div>
+        </Reveal>
+
+        <hr className="divider" />
+
+        <Reveal>
+          <TechStack />
+        </Reveal>
+
+        <hr className="divider" />
+
+        <Reveal>
           <Experience />
-        </div>
+        </Reveal>
 
         <hr className="divider" />
 
-        <div id="about">
-          <About />
-        </div>
+        <Reveal>
+          <FieldNotes />
+        </Reveal>
 
         <hr className="divider" />
-        <div id="contact">
-          <Contact />
-        </div>
 
-        <footer style={{
-          padding: 'var(--space-8) 0',
-          textAlign: 'center',
-          color: 'var(--text-tertiary)',
-          fontSize: 'var(--text-sm)',
-          marginBottom: 'var(--space-4)'
-        }}>
+        <Reveal>
+          <div id="about">
+            <About />
+          </div>
+        </Reveal>
+
+        <hr className="divider" />
+
+        <Reveal>
+          <div id="contact">
+            <Contact />
+          </div>
+        </Reveal>
+
+        <footer className="site-footer">
           © {new Date().getFullYear()} Priyanshu Walia. Built with React.
+          <span className="footer-updated">Last updated Sep 2026.</span>
         </footer>
       </main>
     </>

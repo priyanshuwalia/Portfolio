@@ -1,147 +1,100 @@
-import React from "react";
-import { ExternalLink, Github } from "lucide-react";
+import React from 'react';
+import { ExternalLink, Github, ArrowUpRight } from 'lucide-react';
+import { featuredProjects, labProjects } from '../data/projects';
+import { getTagColor, hexToRgba } from '../data/tagColors';
+import SmartVideo from './SmartVideo';
 
-const projects = [
-  {
-    title: "Formium",
-    description:
-      "A full-stack form builder application with secure authentication, role-based access control, and real-time preview features. Designed RESTful APIs and deployed on Vercel.",
-    tags: ["TypeScript", "React", "Node.js", "PostgreSQL"],
-    demo: "https://form-buddy-v68o.vercel.app/",
-    repo: "https://github.com/priyanshuwalia/FormBuddy",
-    video: "/Formium.mp4",
-  },
-  {
-    title: "MovieLand",
-    description:
-      "React-based movie search application using OMDb API with debounced search and a responsive interface.",
-    tags: ["React", "OMDb API", "CSS"],
-    demo: "https://movie-land-omega-lyart.vercel.app/",
-    repo: "https://github.com/priyanshuwalia/MovieLand",
-  },
-  {
-    title: "Positivitus",
-    description:
-      "Responsive SaaS landing page for a digital marketing agency, optimized for performance, accessibility, and cross-device compatibility.",
-    tags: ["React", "HTML", "CSS"],
-    demo: "https://positivitus-theta.vercel.app/",
-    repo: "https://github.com/priyanshuwalia/Positivitus",
-  },
-];
+const tagStyle = (tag) => {
+  const color = getTagColor(tag);
+  return {
+    color,
+    borderColor: hexToRgba(color, 0.4),
+    backgroundColor: hexToRgba(color, 0.12),
+  };
+};
 
 const Projects = () => {
   return (
-    <section className="section">
-      <h2
-        style={{
-          fontSize: "var(--text-xl)",
-          textTransform: "uppercase",
-          letterSpacing: "0.05em",
-          color: "var(--text-primary)",
-          marginBottom: "var(--space-6)",
-        }}
-      >
-         / Projects
-      </h2>
+    <section id="projects" className="section">
+      <h2 className="section-heading">/ Selected Work</h2>
+      <p className="section-intro">
+        The four most representative things I've shipped — AI-agent commerce, a
+        full-stack product, an AI systems build, and a Web3 experiment.
+      </p>
 
-      <div className="grid grid-cols-1" style={{ gap: "var(--space-6)" }}>
-        {/* CSS Grid override for 2 cols on tablet+ is handled in index.css via media query if class 'grid-cols-2' is used, 
-            but here let's stick to a clean list or grid. Let's use the grid class. */}
-        <div
-          className="grid grid-cols-1 sm:grid-cols-2"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-            gap: "var(--space-6)",
-          }}
-        >
-          {projects.map((project, index) => (
-            <div key={index} className="project-card">
-              {project.video && (
-                <video
-                  src={project.video}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  style={{
-                    width: "100%",
-                    borderRadius: "4px",
-                    marginBottom: "var(--space-4)",
-                  }}
-                />
-              )}
-              <h3
-                style={{
-                  fontSize: "var(--text-lg)",
-                  fontWeight: "500",
-                  marginBottom: "var(--space-2)",
-                  color: "var(--text-primary)",
-                }}
-              >
-                {project.title}
-              </h3>
-              <p
-                style={{
-                  fontSize: "var(--text-sm)",
-                  color: "var(--text-secondary)",
-                  marginBottom: "var(--space-4)",
-                  flexGrow: 1,
-                }}
-              >
-                {project.description}
-              </p>
-
-              <div
-                style={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  gap: "var(--space-2)",
-                  marginBottom: "var(--space-4)",
-                }}
-              >
-                {project.tags.map((tag) => (
-                  <span key={tag} className="tag">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              <div
-                style={{
-                  display: "flex",
-                  gap: "var(--space-4)",
-                  fontSize: "var(--text-sm)",
-                }}
-              >
-                <a
-                  href={project.demo}
-                  target="_blank"
-                  className="link-hover"
-                  style={{
-                    color: "var(--text-primary)",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "var(--space-1)",
-                  }}
-                >
-                  <ExternalLink size={14} /> Live Demo
-                </a>
-                <a
-                  href={project.repo}
-                  className="link-hover"
-                  target="_blank"
-                  style={{
-                    color: "var(--text-secondary)",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "var(--space-1)",
-                  }}
-                >
-                  <Github size={14} /> Source Code
-                </a>
-              </div>
+      <div className="project-grid">
+        {featuredProjects.map((project) => (
+          <article key={project.title} className="project-card">
+            {project.video && (
+              <SmartVideo src={project.video} className="project-video" />
+            )}
+            <div className="project-card-head">
+              <h3 className="project-title">{project.title}</h3>
+              <span className={`status-chip ${project.status}`}>
+                {project.status}
+              </span>
             </div>
+            {project.tagline && (
+              <div className="project-tagline">{project.tagline}</div>
+            )}
+            <p className="project-desc">{project.description}</p>
+
+            <div className="project-tags">
+              {project.tags.map((tag) => (
+                <span key={tag} className="tag" style={tagStyle(tag)}>
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            <div className="project-links">
+              <a
+                href={project.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-hover"
+                style={{ display: project.demo ? 'inline-flex' : 'none' }}
+              >
+                <ExternalLink size={14} /> Live Demo
+              </a>
+              <a
+                href={project.repo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-hover"
+              >
+                <Github size={14} /> Source Code
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div className="lab-section">
+        <h3 className="subsection-heading">From the lab</h3>
+        <p className="section-intro">
+          Smaller experiments and curiosities — fetch, learn, break, move on.
+        </p>
+        <div className="lab-grid">
+          {labProjects.map((item) => (
+            <a
+              key={item.title}
+              href={item.repo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="lab-card"
+            >
+              <div className="lab-card-head">
+                <span className="lab-title">{item.title}</span>
+                <ArrowUpRight size={14} aria-hidden="true" />
+              </div>
+              <p className="lab-desc">{item.description}</p>
+              {item.demo && (
+                <span className="lab-demo link-hover">
+                  <ExternalLink size={12} /> demo
+                </span>
+              )}
+            </a>
           ))}
         </div>
       </div>
