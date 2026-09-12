@@ -70,7 +70,6 @@ function App() {
 
         <footer className="site-footer">
           © {new Date().getFullYear()} Priyanshu Walia. Built with React.
-          <span className="footer-updated">Last updated Sep 2026.</span>
         </footer>
       </main>
     </>
