@@ -1,0 +1,21 @@
+/* Layer order is declared here so cascade precedence is deterministic
+   regardless of the order individual component files happen to load in. */
+@layer reset, tokens, base, components, reactbits, utilities;
+
+@import './tokens.css';
+@import './base.css';
+@import './primitives.css';
+@import './reactbits.css';
+@import './utilities.css';
+@import './stat.css';
+@import './availability.css';
+@import './backdrop.css';
+@import './nav.css';
+@import './hero.css';
+@import './now.css';
+@import './work.css';
+@import './stack.css';
+@import './path.css';
+@import './about.css';
+@import './contact.css';
+@import './footer.css';

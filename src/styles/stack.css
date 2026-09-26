@@ -1,0 +1,247 @@
+@layer components {
+  .stack__legend {
+    display: flex;
+    /* Wraps to a second row on narrow screens: as a single row it forced the
+       page wider than the viewport. */
+    flex-wrap: wrap;
+    gap: var(--s-2) var(--s-4);
+  }
+  .stack__legend li {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-2);
+    font-size: var(--fs-eyebrow);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    /* Each key is a label, not prose — keep it on one line. */
+    white-space: nowrap;
+  }
+  .stack__legend li::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+  .stack__legend li[data-level='core'] {
+    color: var(--accent);
+  }
+  .stack__legend li[data-level='building'] {
+    color: var(--info);
+  }
+
+  .stack__grid {
+    display: grid;
+    gap: var(--s-4);
+  }
+  @media (min-width: 720px) {
+    .stack__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 1080px) {
+    .stack__grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .stack__group {
+    padding: clamp(1.25rem, 2vw, 1.5rem);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    background:
+      linear-gradient(180deg, rgb(255 255 255 / 3%) 0%, rgb(255 255 255 / 0%) 45%),
+      var(--surface-1);
+    box-shadow: var(--shadow-inset-top);
+  }
+
+  .stack__group-head {
+    padding-bottom: var(--s-4);
+    margin-bottom: var(--s-4);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .stack__group-name {
+    margin-bottom: var(--s-1);
+  }
+
+  .stack__group-summary {
+    font-size: var(--fs-micro);
+    line-height: 1.5;
+  }
+
+  .stack__items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-1);
+  }
+
+  .stack__item {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 18px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: var(--s-3);
+    padding: var(--s-2) var(--s-3);
+    margin-inline: calc(var(--s-2) * -1);
+    border: 1px solid transparent;
+    border-radius: var(--r-sm);
+    transition:
+      background-color var(--t-base) var(--ease-out),
+      border-color var(--t-base) var(--ease-out),
+      transform var(--t-base) var(--ease-out);
+  }
+  .stack__item:hover {
+    background: var(--surface-2);
+    border-color: var(--line);
+    transform: translateY(-1px);
+  }
+
+  /* Layer 1 — accent bloom that tracks the pointer. --x/--y are written by a
+     single delegated handler in Stack.jsx. */
+  .stack__item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: radial-gradient(
+      170px circle at var(--x, 50%) var(--y, 50%),
+      rgb(94 233 168 / 18%),
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity var(--t-base) var(--ease-out);
+    pointer-events: none;
+  }
+  .stack__item:hover::before {
+    opacity: 1;
+  }
+
+  /* Layer 2 — accent bar that grows out of the left edge. */
+  .stack__item::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 2px;
+    height: 0;
+    border-radius: 0 2px 2px 0;
+    background: var(--accent);
+    transform: translateY(-50%);
+    transition: height var(--t-base) var(--ease-spring);
+    pointer-events: none;
+  }
+  .stack__item:hover::after {
+    height: 62%;
+  }
+
+  /* Layer 3 — a specular sweep across the row. */
+  .stack__sheen {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: linear-gradient(
+      100deg,
+      transparent 32%,
+      rgb(255 255 255 / 9%) 50%,
+      transparent 68%
+    );
+    transform: translateX(-120%);
+    transition: transform 760ms var(--ease-out);
+    pointer-events: none;
+  }
+  .stack__item:hover .stack__sheen {
+    transform: translateX(120%);
+  }
+
+  .stack__icon {
+    position: relative;
+    display: grid;
+    place-items: center;
+    font-size: 15px;
+    color: var(--ink-faint);
+    transition:
+      color var(--t-base) var(--ease-out),
+      transform var(--t-base) var(--ease-spring);
+  }
+  /* Must precede the hover rule: `[data-level]` and `:hover` both weigh three
+     class-level selectors, so source order decides, and the resting level
+     colour would otherwise win on core items. */
+  .stack__item[data-level='core'] .stack__icon {
+    color: var(--ink-muted);
+  }
+  .stack__item:hover .stack__icon {
+    color: var(--accent);
+    transform: scale(1.18) rotate(-7deg);
+  }
+
+  .stack__name {
+    position: relative;
+    min-width: 0;
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
+    transition:
+      color var(--t-base) var(--ease-out),
+      transform var(--t-base) var(--ease-out);
+  }
+  .stack__item:hover .stack__name {
+    color: var(--ink);
+    transform: translateX(2px);
+  }
+
+  /* Right-aligned so the level reads as a trailing column rather than a
+     second line. Width is always reserved, so revealing it shifts nothing. */
+  .stack__level {
+    position: relative;
+    justify-self: end;
+    white-space: nowrap;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    opacity: 0;
+    transform: translateX(8px);
+    transition:
+      opacity var(--t-base) var(--ease-out),
+      transform var(--t-base) var(--ease-out);
+  }
+  .stack__item:hover .stack__level,
+  .stack__item:focus-within .stack__level {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (hover: none) {
+    .stack__level {
+      opacity: 1;
+      transform: none;
+    }
+    /* No pointer to track, so the bloom and sweep have nothing to drive. */
+    .stack__item::before,
+    .stack__item::after,
+    .stack__sheen {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .stack__item:hover {
+      transform: none;
+    }
+    .stack__item:hover .stack__icon {
+      transform: none;
+    }
+    .stack__item:hover .stack__name {
+      transform: none;
+    }
+    .stack__sheen {
+      display: none;
+    }
+  }
+}

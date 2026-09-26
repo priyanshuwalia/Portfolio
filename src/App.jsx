@@ -1,79 +1,46 @@
-import React from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import StatusStrip from './components/StatusStrip';
-import Now from './components/Now';
-import Projects from './components/Projects';
-import TechStack from './components/TechStack';
-import Experience from './components/Experience';
-import About from './components/About';
-import Contact from './components/Contact';
-import GridBackground from './components/GridBackground';
-import Reveal from './components/Reveal';
-function App() {
+import page from './data/page';
+import { AvailabilityPill, Navbar, Backdrop, Footer } from './components/layout';
+import { useOrphanGuard } from './hooks/useOrphanGuard';
+import { Hero } from './sections/Hero';
+import { Now } from './sections/Now';
+import { Work } from './sections/Work';
+import { Stack } from './sections/Stack';
+import { Path } from './sections/Path';
+import { About } from './sections/About';
+import { Contact } from './sections/Contact';
+
+/**
+ * Section order, numbering and nav labels all come from data/page.js — this
+ * file only decides which component renders which entry.
+ */
+const registry = { Now, Work, Stack, Path, About };
+
+const App = () => {
+  // Site-wide typographic orphan control, applied after layout settles.
+  useOrphanGuard();
+
   return (
     <>
       <a className="skip-link" href="#main">
         Skip to content
       </a>
+
+      <Backdrop />
       <Navbar />
-      <main className="container" id="main" style={{ paddingTop: '80px' }}>
-        <GridBackground />
+      <AvailabilityPill />
 
-        <div id="hero">
-          <Hero />
-        </div>
-
-        <StatusStrip />
-
-        <hr className="divider" />
-
-        <Reveal>
-          <Now />
-        </Reveal>
-
-        <hr className="divider" />
-
-        <Reveal>
-          <div id="projects">
-            <Projects />
-          </div>
-        </Reveal>
-
-        <hr className="divider" />
-
-        <Reveal>
-          <TechStack />
-        </Reveal>
-
-        <hr className="divider" />
-
-        <Reveal>
-          <Experience />
-        </Reveal>
-
-        <hr className="divider" />
-
-        <Reveal>
-          <div id="about">
-            <About />
-          </div>
-        </Reveal>
-
-        <hr className="divider" />
-
-        <Reveal>
-          <div id="contact">
-            <Contact />
-          </div>
-        </Reveal>
-
-        <footer className="site-footer">
-          © {new Date().getFullYear()} Priyanshu Walia. Built with React.
-        </footer>
+      <main id="main">
+        <Hero />
+        {page.sections.map((section) => {
+          const SectionComponent = registry[section.component];
+          return SectionComponent ? <SectionComponent key={section.id} section={section} /> : null;
+        })}
+        <Contact />
       </main>
+
+      <Footer />
     </>
   );
-}
+};
 
 export default App;

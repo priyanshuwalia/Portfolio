@@ -1,0 +1,71 @@
+@layer components {
+  .footer {
+    position: relative;
+    padding-top: var(--s-8);
+    border-top: 1px solid var(--line);
+  }
+
+  .footer__inner {
+    display: grid;
+    gap: var(--s-6);
+    padding-bottom: var(--s-8);
+  }
+  @media (min-width: 900px) {
+    .footer__inner {
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+    }
+  }
+
+  .footer__name {
+    font-weight: 500;
+    letter-spacing: var(--track-snug);
+  }
+
+  .footer__note {
+    font-size: var(--fs-sm);
+    margin-top: 2px;
+    max-width: 44ch;
+  }
+
+  .footer__links {
+    display: flex;
+    gap: var(--s-2);
+  }
+  @media (min-width: 900px) {
+    .footer__links {
+      order: 3;
+      grid-column: 1 / -1;
+      justify-content: space-between;
+    }
+  }
+
+  .footer__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--s-4);
+  }
+  .footer__meta p {
+    font-size: var(--fs-eyebrow);
+  }
+
+  /* Oversized year as a closing mark */
+  .footer__rule {
+    display: grid;
+    place-items: center;
+    padding-block: var(--s-4) var(--s-6);
+    border-top: 1px solid var(--line);
+    overflow: hidden;
+  }
+  /* Outlined, so the stroke is what needs to clear 4.5:1 — a translucent white
+     border token does not, because it composites down to near-invisible. */
+  .footer__rule span {
+    font-size: clamp(3rem, 14vw, 9rem);
+    line-height: 0.8;
+    letter-spacing: var(--track-tight);
+    color: transparent;
+    -webkit-text-stroke: 1px #7d7e7f;
+    user-select: none;
+  }
+}

@@ -1,0 +1,142 @@
+@layer components {
+  /* ==================================================================
+     AvailabilityPill — viewport-docked availability indicator.
+     Sits above the page but below the nav, so the header always wins
+     the overlap and the pill never covers a section label.
+     ================================================================== */
+  .avail {
+    position: fixed;
+    left: var(--gutter);
+    bottom: var(--s-5);
+    z-index: var(--z-float);
+    /* The panel is absolutely positioned so that while it is collapsed its
+       box never inflates this container and lifts the trigger off the edge. */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .avail__trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-2);
+    min-height: 40px;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--accent-line);
+    border-radius: 999px;
+    background: rgb(10 11 13 / 88%);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 8px 30px rgb(0 0 0 / 45%);
+    transition:
+      border-color var(--t-base) var(--ease-out),
+      background-color var(--t-base) var(--ease-out);
+  }
+  .avail__trigger:hover,
+  .avail[data-open='true'] .avail__trigger {
+    border-color: var(--accent);
+    background: rgb(10 11 13 / 96%);
+  }
+
+  .avail__label {
+    font-size: var(--fs-eyebrow);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .avail__icon {
+    color: var(--accent);
+    transition: transform var(--t-base) var(--ease-out);
+  }
+
+  .avail__panel {
+    position: absolute;
+    bottom: calc(100% + var(--s-2));
+    left: 0;
+    width: min(20rem, calc(100vw - var(--gutter) * 2));
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+    padding: var(--s-4);
+    border: 1px solid var(--line-loud);
+    border-radius: var(--r-md);
+    background: rgb(10 11 13 / 94%);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 24px 60px rgb(0 0 0 / 55%);
+    /* Collapsed by default; `data-shown` releases it. */
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+    transform-origin: bottom left;
+    visibility: hidden;
+    transition:
+      opacity var(--t-base) var(--ease-out),
+      transform var(--t-base) var(--ease-spring),
+      visibility var(--t-base) step-end;
+  }
+  .avail__panel[data-shown='true'] {
+    opacity: 1;
+    transform: none;
+    visibility: visible;
+    transition:
+      opacity var(--t-base) var(--ease-out),
+      transform var(--t-base) var(--ease-spring),
+      visibility 0s;
+  }
+
+  .avail__summary {
+    font-size: var(--fs-eyebrow);
+    color: var(--ink-dim);
+  }
+
+  .avail__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .avail__item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding-block: var(--s-2);
+    border-top: 1px solid var(--line);
+  }
+  .avail__item:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  .avail__item-label {
+    display: flex;
+    align-items: center;
+    gap: var(--s-2);
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    color: var(--ink);
+  }
+  /* Each category is marked with the same accent dot as the trigger, so the
+     pill reads as one object rather than a floating list. */
+  .avail__item-label::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    flex: none;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .avail__item-detail {
+    padding-left: 12px;
+    font-size: var(--fs-eyebrow);
+    line-height: 1.5;
+    color: var(--ink-muted);
+  }
+
+  @media (max-width: 560px) {
+    .avail__trigger {
+      min-height: 36px;
+      padding: 0.375rem 0.625rem;
+    }
+  }
+}

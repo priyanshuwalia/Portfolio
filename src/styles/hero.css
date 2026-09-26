@@ -1,0 +1,152 @@
+@layer components {
+  .hero {
+    position: relative;
+    padding-top: calc(var(--nav-h) + clamp(3rem, 9vh, 6.5rem));
+    padding-bottom: clamp(2.5rem, 6vh, 4rem);
+  }
+
+  .hero__inner {
+    display: grid;
+    gap: clamp(2.5rem, 6vw, 4rem);
+    align-items: center;
+  }
+  @media (min-width: 1120px) {
+    .hero__inner {
+      grid-template-columns: minmax(0, 1fr) auto;
+    }
+  }
+
+  /* ---- Copy column -------------------------------------------------- */
+  .hero__status {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-3);
+    padding: 5px 12px 5px 10px;
+    border: 1px solid var(--line);
+    border-radius: var(--r-pill);
+    background: rgb(16 18 22 / 60%);
+    margin-bottom: var(--s-6);
+  }
+
+  .hero__title {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-2);
+    margin-bottom: var(--s-6);
+    /* The role line is sized against this column, not the viewport: the
+       two-column layout narrows it well before the window does. */
+    container-type: inline-size;
+  }
+
+  .hero__greeting {
+    color: var(--ink-faint);
+  }
+
+  .hero__line {
+    display: block;
+  }
+
+  .hero__line--role {
+    /* Replaces the generic `.display` utility: the longest role needs roughly
+       9.2em to sit on one line, so it is sized against this column (see
+       `container-type` on `.hero__title`) rather than the viewport. */
+    font-size: clamp(1.4rem, 8.6cqi, 3.75rem);
+    font-weight: 500;
+    /* Not `--lh-tight` (0.96): `.rb-rotate` is an `overflow: hidden` window, so
+       a line box shorter than the font's content box (~1.21em for Inter) shears
+       the descenders off "AI-Agent Systems". 1.22 keeps the full glyph box
+       inside the window the roll animates within. */
+    line-height: 1.22;
+    letter-spacing: var(--track-tight);
+    color: var(--ink-dim);
+  }
+
+  .hero__lede {
+    max-width: 54ch;
+    margin-bottom: var(--s-8);
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--s-3);
+    margin-bottom: var(--s-10);
+  }
+
+  /* No rule here: `.section-rule` already draws a full-width hairline ~100px
+     below this, and two identical lines this close read as a rendering
+     mistake. The section rule is the one that belongs — it repeats before all
+     five numbered sections. Spacing alone separates the meta from the actions. */
+  .hero__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-8);
+    padding-top: var(--s-6);
+  }
+  .hero__meta dt {
+    margin-bottom: 2px;
+  }
+  .hero__meta dd {
+    font-size: var(--fs-sm);
+    color: var(--ink-muted);
+  }
+
+  /* ---- Portrait ----------------------------------------------------- */
+  .hero__aside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--s-6);
+  }
+
+  .hero__portrait {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: clamp(240px, 34vw, 300px);
+    aspect-ratio: 1;
+  }
+
+  .hero__ring {
+    position: absolute;
+    inset: -30px;
+  }
+
+  .hero__portrait-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    padding: 7px;
+    border: 1px solid var(--line-strong);
+    border-radius: 50%;
+    background: linear-gradient(150deg, rgb(255 255 255 / 10%), rgb(255 255 255 / 0%) 55%);
+    box-shadow: var(--shadow-lg);
+  }
+  .hero__portrait-frame::before {
+    content: '';
+    position: absolute;
+    inset: 7px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px var(--line);
+    pointer-events: none;
+  }
+  .hero__portrait-frame img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.04) brightness(0.94);
+    transition: filter var(--t-slow) var(--ease-out), transform var(--t-slow) var(--ease-out);
+  }
+  .hero__portrait:hover .hero__portrait-frame img {
+    filter: grayscale(0) contrast(1) brightness(1);
+    transform: scale(1.03);
+  }
+
+  .hero__socials {
+    display: flex;
+    gap: var(--s-2);
+  }
+
+}

@@ -1,0 +1,239 @@
+/* ==================================================================
+   React Bits — vendored component styles.
+   Adapted from https://reactbits.dev (MIT + Commons Clause).
+   Recoloured to consume this project's design tokens so the
+   vendored layer stays visually consistent with everything else.
+   ================================================================== */
+@layer reactbits {
+  /* ---- BlurText ---------------------------------------------------- */
+  .rb-blur-text {
+    display: block;
+  }
+  .rb-blur-text > span {
+    display: inline-block;
+    will-change: transform, filter, opacity;
+  }
+
+  /* ---- CircularText ------------------------------------------------ */
+  .rb-circular {
+    --ring-inset: -44%;
+    position: relative;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.34em;
+    text-indent: 0.34em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    pointer-events: none;
+  }
+  .rb-circular span {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    transform-origin: 50% 50%;
+  }
+
+  /* ---- ShinyText --------------------------------------------------- */
+  .rb-shiny {
+    display: inline-block;
+  }
+
+  /* ---- RotatingText ------------------------------------------------ */
+  .rb-rotate {
+    position: relative;
+    display: inline-block;
+    vertical-align: bottom;
+    overflow: hidden;
+    /* A rotating role is a phrase, not prose: it must never break across
+       lines, or the visible roll clips half a word. */
+    white-space: nowrap;
+  }
+  .rb-rotate-sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  /* ---- SpotlightCard ----------------------------------------------- */
+  .rb-spotlight {
+    position: relative;
+    isolation: isolate;
+    background: none;
+    border: 0;
+    padding: 0;
+    border-radius: 0;
+    --mouse-x: 50%;
+    --mouse-y: 50%;
+    --spotlight-color: rgb(255 255 255 / 4%);
+  }
+  .rb-spotlight::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: radial-gradient(
+      420px circle at var(--mouse-x) var(--mouse-y),
+      var(--spotlight-color),
+      transparent 72%
+    );
+    opacity: 0;
+    transition: opacity var(--t-slow) var(--ease-out);
+    pointer-events: none;
+  }
+  .rb-spotlight:hover::before,
+  .rb-spotlight:focus-within::before {
+    opacity: 1;
+  }
+
+  /* ---- BorderGlow -------------------------------------------------- */
+  .rb-glow {
+    --edge-proximity: 0;
+    --cursor-angle: 45deg;
+    --edge-sensitivity: 30;
+    --color-sensitivity: calc(var(--edge-sensitivity) + 20);
+    --glow-padding: 40px;
+    --cone-spread: 25;
+
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    transform: translate3d(0, 0, 0.01px);
+    border: 1px solid var(--line);
+    border-radius: var(--border-radius, var(--r-lg));
+    background: var(--card-bg, var(--surface-1));
+    overflow: visible;
+  }
+
+  .rb-glow::before,
+  .rb-glow::after,
+  .rb-glow > .rb-glow__edge {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    z-index: -1;
+    transition: opacity 0.25s ease-out;
+  }
+
+  .rb-glow:not(:hover) > .rb-glow__edge,
+  .rb-glow:not(:hover)::after {
+    opacity: 0;
+    transition: opacity 0.75s ease-in-out;
+  }
+
+  /* Coloured mesh border, masked to a cone that follows the cursor */
+  .rb-glow::before {
+    border: 1px solid transparent;
+    background:
+      linear-gradient(var(--card-bg, var(--surface-1)) 0 100%) padding-box,
+      var(--rb-grad-1) border-box,
+      var(--rb-grad-2) border-box,
+      var(--rb-grad-3) border-box,
+      var(--rb-grad-base) border-box;
+    opacity: calc((var(--edge-proximity) - var(--color-sensitivity)) / (100 - var(--color-sensitivity)));
+    mask-image: conic-gradient(
+      from var(--cursor-angle) at center,
+      black calc(var(--cone-spread) * 1%),
+      transparent calc((var(--cone-spread) + 15) * 1%),
+      transparent calc((100 - var(--cone-spread) - 15) * 1%),
+      black calc((100 - var(--cone-spread)) * 1%)
+    );
+  }
+
+  /* Soft fill bleeding in from the edges */
+  .rb-glow::after {
+    border: 1px solid transparent;
+    background:
+      var(--rb-grad-1) padding-box,
+      var(--rb-grad-2) padding-box,
+      var(--rb-grad-3) padding-box,
+      var(--rb-grad-base) padding-box;
+    mask-image:
+      linear-gradient(to bottom, black, black),
+      radial-gradient(ellipse at 50% 50%, black 40%, transparent 65%),
+      conic-gradient(from var(--cursor-angle) at center, transparent 5%, black 15%, black 85%, transparent 95%);
+    mask-composite: subtract, add, add;
+    opacity: calc(
+      var(--fill-opacity, 0.5) * (var(--edge-proximity) - var(--color-sensitivity)) /
+        (100 - var(--color-sensitivity))
+    );
+    mix-blend-mode: soft-light;
+  }
+
+  .rb-glow__edge {
+    inset: calc(var(--glow-padding) * -1);
+    z-index: 1;
+    pointer-events: none;
+    mask-image: conic-gradient(
+      from var(--cursor-angle) at center,
+      black 2.5%,
+      transparent 10%,
+      transparent 90%,
+      black 97.5%
+    );
+    opacity: calc((var(--edge-proximity) - var(--edge-sensitivity)) / (100 - var(--edge-sensitivity)));
+    mix-blend-mode: plus-lighter;
+  }
+
+  .rb-glow__inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ---- GlareHover -------------------------------------------------- */
+  .rb-glare {
+    position: relative;
+    overflow: hidden;
+    --gh-angle: -45deg;
+    --gh-size: 250%;
+    --gh-duration: 650ms;
+    --gh-rgba: rgb(255 255 255 / 0.14);
+  }
+  .rb-glare::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      var(--gh-angle),
+      transparent 38%,
+      var(--gh-rgba) 50%,
+      transparent 62%
+    );
+    background-size: var(--gh-size) var(--gh-size);
+    background-position: 100% 100%;
+    background-repeat: no-repeat;
+    transition: background-position var(--gh-duration) var(--ease-out);
+  }
+  .rb-glare:hover::before {
+    background-position: 0% 0%;
+  }
+
+  /* ---- Noise (film grain) ------------------------------------------ */
+  .rb-grain {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: var(--z-grain);
+    opacity: 0.05;
+  }
+  .rb-magnet {
+    display: inline-block;
+  }
+  .rb-magnet__inner {
+    display: inline-block;
+    will-change: transform;
+  }
+}
