@@ -9,9 +9,18 @@
   .rb-blur-text {
     display: block;
   }
+  /* Each animated word is a box sized to the line box, which --lh-tight
+     (0.96) sets well below Inter's natural ascent + descent. Glyph
+     descenders (g, p, y, j) therefore paint outside the box: measured
+     scrollHeight 48px against a clientHeight of 42px at --fs-2xl, leaving
+     the tail of "g" hanging past the element bounds. The padding gives the
+     box room to contain them; the matching negative margin returns the same
+     space, so the line's cross size -- and the optical leading -- is
+     unchanged. */
   .rb-blur-text > span {
     display: inline-block;
-    will-change: transform, filter, opacity;
+    padding-bottom: 0.12em;
+    margin-bottom: -0.12em;
   }
 
   /* ---- CircularText ------------------------------------------------ */
