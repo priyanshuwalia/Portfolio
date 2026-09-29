@@ -1,7 +1,7 @@
 export const nowBuilding = [
   {
     title: 'MerchantGate',
-    status: 'shipping',
+    status: 'shipped',
     note: 'The AI-buyer merchant platform — agent commerce API with a live demo.',
     meta: 'Live demo open · Razorpay test rails',
     demo: 'https://merchantgate.vercel.app/',

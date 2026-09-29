@@ -1,7 +1,7 @@
 export const projects = [
   {
     title: 'MerchantGate',
-    status: 'shipping',
+    status: 'shipped',
     year: '2026',
     featured: true,
     tagline: 'The merchant platform built for AI buyers.',
@@ -15,12 +15,9 @@ export const projects = [
     tags: ['AI Agent Commerce', 'API Design', 'Razorpay', 'Dashboard'],
     demo: 'https://merchantgate.vercel.app/',
     repo: 'https://github.com/priyanshuwalia/merchantgate',
-    image: '/merchantGate.png',
-    imageAlt: 'MerchantGate merchant dashboard',
-    // Intrinsic size of the capture (2940x1492). The frame is locked to this
-    // ratio so the whole screenshot shows — 16:9 would crop ~10% off each side.
-    mediaWidth: 2940,
-    mediaHeight: 1492
+    // 1920x1080 capture, so the frame keeps the CSS default 16/9 and needs no
+    // explicit media size — same as the Formium capture below.
+    video: '/Merchangate.mp4'
   },
   {
     title: 'Formium',
