@@ -1,10 +1,9 @@
 import { ArrowDown, FileText, Mail } from 'lucide-react';
 import { identity, resume, socials } from '../data/site';
-import { CircularText, RotatingText } from '../components/reactbits';
+import { RotatingText } from '../components/reactbits';
 import { Button, IconLink, brandIcons } from '../components/ui';
 
 const socialLinks = socials.filter((social) => social.id !== 'email');
-// const ringText = 'available for work · full-stack · ai agents · ';
 
 export const Hero = () => (
   <section className="hero" id="top">
@@ -55,7 +54,6 @@ export const Hero = () => (
 
       <div className="hero__aside">
         <div className="hero__portrait">
-          {/* <CircularText text={ringText} className="hero__ring" spinDuration={34} /> */}
           <div className="hero__portrait-frame">
             <picture>
               <source type="image/webp" srcSet="/my-notion-face-portrait-512.webp" />

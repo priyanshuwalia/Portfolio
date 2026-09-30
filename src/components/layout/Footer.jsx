@@ -1,6 +1,5 @@
-import { identity, resume, socials, githubUser } from '../../data/site';
+import { identity, socials, githubUser } from '../../data/site';
 import { brandIcons, IconLink } from '../ui';
-import { ShinyText } from '../reactbits';
 import { pad2 } from '../../lib/format';
 
 const socialLinks = socials.filter((social) => social.id !== 'email');
@@ -10,9 +9,6 @@ export const Footer = () => (
     <div className="shell footer__inner">
       <div className="footer__lead">
         <p className="footer__name">{identity.name}</p>
-        <p className="footer__note dim">
-          Designed and built in the browser — type, motion and layout by hand.
-        </p>
       </div>
 
       <nav className="footer__links" aria-label="Elsewhere">
@@ -32,9 +28,6 @@ export const Footer = () => (
       <div className="footer__meta">
         <p className="mono dim">
           © {new Date().getFullYear()} · github.com/{githubUser}
-        </p>
-        <p className="mono dim">
-          <ShinyText text={resume.label} speed={4} />
         </p>
       </div>
     </div>

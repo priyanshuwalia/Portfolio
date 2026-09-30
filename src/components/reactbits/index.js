@@ -8,7 +8,6 @@
  */
 export { BlurText } from './BlurText';
 export { BorderGlow } from './BorderGlow';
-export { CircularText } from './CircularText';
 export { CountUp } from './CountUp';
 export { GlareHover } from './GlareHover';
 export { Noise } from './Noise';

@@ -7,6 +7,10 @@ import { BorderGlow, BlurText } from '../components/reactbits';
 const email = socials.find((social) => social.id === 'email');
 const channels = socials.filter((social) => social.id !== 'email');
 
+// The headline wraps per word, so a normal space lets "shipping." be stranded
+// alone on the last line. A non-breaking space keeps "worth shipping." whole.
+const headline = 'Let’s build something worth\u00A0shipping.';
+
 const ChannelLink = ({ social, index }) => {
   const Icon = brandIcons[social.id];
   return (
@@ -52,7 +56,7 @@ const ContactPanel = () => {
             <BlurText
               as="h2"
               id={headingId}
-              text="Let’s build something worth shipping."
+              text={headline}
               className="contact__headline"
               animateBy="words"
               delay={40}

@@ -108,11 +108,6 @@
     aspect-ratio: 1;
   }
 
-  .hero__ring {
-    position: absolute;
-    inset: -30px;
-  }
-
   .hero__portrait-frame {
     position: relative;
     width: 100%;
