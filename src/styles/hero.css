@@ -100,12 +100,22 @@
     gap: var(--s-6);
   }
 
+  /* Dropped below 720px. On phones the portrait was a full-width block that
+     pushed the lede, the actions and the meta a whole screen down before any
+     work was visible. `.hero__aside` keeps its socials — only the avatar goes.
+     (This was lost in the BEM refactor: the old rule targeted
+     `.hero-portrait-wrap`, which no longer exists.) */
   .hero__portrait {
     position: relative;
-    display: grid;
+    display: none;
     place-items: center;
     width: clamp(240px, 34vw, 300px);
     aspect-ratio: 1;
+  }
+  @media (min-width: 720px) {
+    .hero__portrait {
+      display: grid;
+    }
   }
 
   .hero__portrait-frame {

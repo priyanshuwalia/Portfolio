@@ -4,7 +4,12 @@ export const identity = {
   roles: ['Full-Stack Developer', 'AI-Agent Systems', 'Interface Design'],
   location: 'New Delhi, India',
   timezone: 'IST · UTC+5:30',
-  availability: 'Open to full-stack & AI-engineering roles',
+  // U+2011 (non-breaking hyphen) in "AI-engineering": a plain hyphen is a legal
+  // break opportunity, so below ~480px the line broke after "AI-" and stranded
+  // "engineering roles" alone. This keeps the compound whole so the sentence
+  // falls as "Open to full-stack &" / "AI-engineering roles". Do not
+  // "normalise" it back to U+002D.
+  availability: 'Open to full-stack & AI‑engineering roles',
   lede: 'I build full-stack products and the agent infrastructure behind them — payments rails, APIs, and the interfaces that make systems legible. Currently turning a merchant API into an on-ramp for AI buyers.',
   statusLine: 'Building in public',
 };
