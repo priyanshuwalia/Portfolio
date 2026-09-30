@@ -132,3 +132,14 @@
     }
   }
 }
+
+/* Unlayered on purpose: layered rules lose to this, which is the point. The
+   `hidden` attribute is a hard signal, but the UA sheet's `[hidden]` rule sits
+   in the user-agent origin, so any author `display` declaration silently beats
+   it. .nav__sheet declares `display: flex`, so `hidden` on it did nothing and
+   the sheet painted over the viewport on mobile. The same latent bug affected
+   .avail__panel. Without this, a component that sets `display` on an element it
+   also hides can never be hidden. */
+[hidden] {
+  display: none;
+}
