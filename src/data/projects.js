@@ -13,6 +13,17 @@ export const projects = [
       'Payments running on Razorpay test rails, webhook-verified'
     ],
     tags: ['AI Agent Commerce', 'API Design', 'Razorpay', 'Dashboard'],
+    // Defensible, verified facts (resume + repo). These are concrete specs, not
+    // invented outcomes. Rendered in the Work section and the static shell.
+    metrics: [
+      'Rolling 30-day budgets per agent',
+      'SHA-256 hash-chained, append-only audit trail',
+      'Razorpay test-mode payments, webhook-verified',
+      '.well-known/agent-commerce.json agent discovery'
+    ],
+    // TODO(metrics): no verified quantitative outcome yet — ask Priyanshu for the
+    // real numbers before publishing any. Candidates: transactions settled /
+    // active buying agents, checkout latency (p50/p95), uptime. Do NOT guess.
     demo: 'https://merchantgate.vercel.app/',
     repo: 'https://github.com/priyanshuwalia/merchantgate',
     // 1920x1080 capture, so the frame keeps the CSS default 16/9 and needs no
@@ -32,6 +43,16 @@ export const projects = [
       'Live preview that mirrors the published form exactly'
     ],
     tags: ['TypeScript', 'React', 'Node.js', 'PostgreSQL'],
+    // Defensible, verified facts (resume + repo). Rendered in Work + static shell.
+    metrics: [
+      'RBAC down to individual field visibility',
+      'Live preview mirrors the published form exactly',
+      'Google Sheets + Slack response exports and notifications',
+      'Modular backend architecture: API / service / data-access layers'
+    ],
+    // TODO(metrics): no verified quantitative outcome yet — ask Priyanshu for the
+    // real numbers before publishing any. Candidates: forms created, responses
+    // collected, active users, time saved vs. manual setup. Do NOT guess.
     demo: 'https://form-buddy-v68o.vercel.app/',
     repo: 'https://github.com/priyanshuwalia/FormBuddy',
     video: '/Formium.mp4'

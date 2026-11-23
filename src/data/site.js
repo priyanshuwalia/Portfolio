@@ -61,7 +61,8 @@ export const socials = [
     id: 'linkedin',
     label: 'LinkedIn',
     handle: 'priyanshu-walia',
-    url: 'https://www.linkedin.com/in/priyanshu-walia/'
+    // Canonical profile URL (matches the resume PDF link and the JSON-LD sameAs).
+    url: 'https://www.linkedin.com/in/priyanshu-walia-12203a307/'
   },
   { id: 'twitter', label: 'X', handle: '@Priyanshuwalia4', url: 'https://x.com/Priyanshuwalia4' },
   {

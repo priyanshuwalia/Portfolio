@@ -162,6 +162,34 @@
     color: var(--accent);
   }
 
+  /* Verified, defensible facts — a compact mono strip distinct from the
+     narrative highlights above. Uses the same tokens so it reads as part of
+     the card, not a new visual language. */
+  .work__metrics {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-1);
+    padding: var(--s-3) var(--s-4);
+    border: 1px solid var(--line);
+    border-left: 2px solid var(--accent-line);
+    border-radius: var(--r-sm);
+    background: var(--surface-1);
+    font-family: var(--font-mono);
+    font-size: var(--fs-micro);
+    color: var(--ink-muted);
+  }
+
+  .work__metrics li {
+    display: flex;
+    gap: var(--s-2);
+  }
+
+  .work__metrics li::before {
+    content: '▸';
+    flex: none;
+    color: var(--accent);
+  }
+
   .work__tags {
     padding-top: var(--s-2);
   }

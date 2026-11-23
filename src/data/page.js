@@ -11,7 +11,7 @@ import { nowBuilding } from '../data/now';
  */
 export const page = {
   meta: {
-    title: `${identity.name} — Full-Stack Developer`,
+    title: `${identity.name} — Software Engineer (Full-Stack Developer)`,
     description: identity.lede,
     availability: identity.availability
   },

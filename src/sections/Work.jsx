@@ -67,6 +67,14 @@ const ProjectCard = ({ project, index }) => (
             </ul>
           )}
 
+          {project.metrics && (
+            <ul className="work__metrics" aria-label={`${project.title} verified facts`}>
+              {project.metrics.map((metric) => (
+                <li key={metric}>{metric}</li>
+              ))}
+            </ul>
+          )}
+
           <TagRow tags={project.tags} className="work__tags" />
 
           <div className="work__links">
